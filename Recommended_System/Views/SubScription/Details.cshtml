@@ -1,0 +1,36 @@
+﻿@model Recommended_System.Models.SubScription_Kind2
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>SubScription_Kind2</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Type)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Time_Period)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Time_Period)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Sub_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

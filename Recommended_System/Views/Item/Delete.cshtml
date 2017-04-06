@@ -1,0 +1,22 @@
+﻿@model Recommended_System.Models.Items
+
+@{
+    ViewBag.Title = "Delete Item";
+}
+
+<div class="h4 alert-warning alert">
+    Delete SubScription
+</div>
+
+<div class="alert-danger alert h2">Are you sure you want to delete  <span class="display-field btn disabled alert-danger">
+    @Html.DisplayFor(model => model.T_Name)
+</span>? </div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p style="text-align:center">
+        <input type="submit" value="Delete"  class="btn-danger btn" /> |
+        @Html.ActionLink("Cancel & Back to List", "Index")
+    </p>
+}

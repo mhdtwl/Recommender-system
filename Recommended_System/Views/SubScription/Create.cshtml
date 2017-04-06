@@ -1,0 +1,65 @@
+﻿@model Recommended_System.Models.SubScription_Kind2
+
+@{
+    ViewBag.Title = "Create new SubScription Kind";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="alert panel-heading alert-info">Create new  SubScription</div>
+    <fieldset class="panel-body panel">
+        <label style="color:red">@ViewBag.message</label><br />
+        <ul class="list-unstyled panel panel-body panel-default">
+            <li>
+                <span class="editor-label alert ">
+                    @Html.LabelFor(model => model.Type, new { @class = "label label-info" })
+                </span>
+                <span class="editor-label ">
+                    @Html.TextBoxFor(model => model.Type , new { @Class = "form-control field" })
+                    @Html.ValidationMessageFor(model => model.Type)
+                </span>
+            </li>
+            <li class="clearfix"><br /></li>
+            <li>
+                <span class="editor-label alert">
+                    @Html.LabelFor(model => model.Price, new { @class = "label label-info" })
+                </span>
+                <span class="editor-field">
+                    @Html.TextBoxFor(model => model.Price, new { @Class = "form-control field" , @type="number" })
+                    @Html.ValidationMessageFor(model => model.Price)
+                </span>
+            </li>
+            <li class="clearfix"><br /></li>
+            <li>
+
+                <span class="editor-label">
+                    @Html.LabelFor(model => model.Time_Period, new { @class = "label label-info" })
+                </span>
+                <span class="editor-field">
+                    @Html.TextBoxFor(model => model.Time_Period , new { @Class = "form-control field" , @type="number" })
+                    @Html.ValidationMessageFor(model => model.Time_Period)
+                </span>
+            </li>
+            <li class="clearfix"><br /></li>
+            <li>
+                <p>
+                    <br />
+                    <input type="submit" value="Create" class="btn btn-primary"   />
+                </p>
+            </li>
+        </ul>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

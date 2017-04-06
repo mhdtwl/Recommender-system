@@ -1,0 +1,59 @@
+﻿@model Recommended_System.Models.Itemadder
+@{
+    ViewBag.Title = "Support";
+}
+<fieldset>
+    <h2><span class="label alert-info "> Support Page </span></h2>
+    <br />
+    <div class="">
+        <div>
+            <p>
+                Welcome to our website .<br />
+                We are ready to receive your orders, your suggestions and your complaint at any time.<br />
+                Send us anything you need, on the obvious contacts e-mails below  with the admins of this website .
+            </p>
+        </div>
+        <br />
+        <div>
+            <p>
+                <span class="alert-danger label" id="Forget_password"> Forget the password </span><br /><br />
+                We can support the forgetting password of an account by <br /> send us your problem to the e-mails below.
+                <br />  Welcome anytime . <br /> Thanks .
+            </p>
+
+        </div>
+    </div>
+
+    <br />
+    <div class="well well-sm">
+        <table class="table-striped table-bordered table">
+            <tr>
+                <th>
+                    <span class="label label-success centrLbl ">
+                        Admin's Name
+                    </span>
+                </th>
+                <th>
+                    <span class="label label-danger centrLbl ">
+                        Admin's E-mail
+                    </span>
+                </th>
+                <th>
+                    <span class="label label-warning centrLbl ">
+                        Admin's Phone
+                    </span>
+                </th>
+            </tr>
+            @for (int i = 0; i < @Model.pv.Count; i++)
+            {
+
+                <tr style="text-align:center"><td>@Model.name_admin[i]</td><td>@Model.pv[i]</td><td>@Model.ind[i]</td></tr>
+
+            }
+        </table>
+
+    </div>
+
+
+
+</fieldset>

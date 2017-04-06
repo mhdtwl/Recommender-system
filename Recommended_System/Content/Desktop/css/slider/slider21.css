@@ -1,0 +1,45 @@
+﻿
+div.neat {
+    font-size: 500px;
+    width: 800px;/* img width*/
+    height: 320px;
+    overflow: hidden;
+}
+
+div.neat > div {
+    position: relative;
+    left: 0;
+    width: 3200px;/* total width*/
+    -webkit-animation: loop 10s infinite;
+    -moz-animation: loop 10s infinite;
+}
+
+div.neat > div > img {
+    width: 800px;/* img width*/
+    display: block;
+    float: left;
+}
+
+@-webkit-keyframes loop { /* as # of imgs widthes */
+    0% { left: 0; }
+    20% { left: 0; }
+    25% { left: -800px; }
+    45% { left: -800px; }
+    50% { left: -1600px; }
+    70% { left: -1600px; }
+    75% { left: -2400px; }
+    95% { left: -2400px; }
+}
+
+@-moz-keyframes loop {
+    0% { left: 0; }
+    20% { left: 0; }
+    25% { left: -800px; }
+    45% { left: -800px; }
+    50% { left: -1600px; }
+    70% { left: -1600px; }
+    75% { left: -2400px; }
+    95% { left: -2400px; }
+}
+
+

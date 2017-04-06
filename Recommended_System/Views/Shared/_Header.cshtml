@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "";
+
+
+    var Cust_Name = Session["MyCust_N"];
+    int id = 0;
+    bool isadmin = true;
+    if (Session["swi"] != null)
+    {
+        id = (int)Session["swi"];
+        if (Session["isadmin"] == "no")
+        {
+            isadmin = false;
+        }
+        if (Session["isadmin"] == "yes")
+        {
+            isadmin = true;
+        }
+    }
+}
+<style>
+.mysgnBtn {
+        margin-left:50%;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+</style>
+<nav class="navbar navbar-fixed-top navbar-default navbar-header " style="background-image:url('Content/Desktop/images/Logo/imgbg.jpg'); border-bottom-color: #b7b7b7; padding-top: 15px 0px 10px 10px;" role="navigation">
+    <div class="container-fluid">
+
+        @*<blockquote> asdasd</blockquote>*@
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="~/Home"><img src="~/Content/Desktop/images/Logo/LOGO_JP1113.png" style="height:50px;width:160px" /></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav ">
+                <li>
+                    <form class="navbar-form navbar-left" role="search" method="post" style="padding-right:5px;">
+                        <div class="form-group ">
+                            <span class="input-group left" style="display: compact; width: 460px">
+                                <input type="text" id="quick_search" autocomplete="off" onkeyup="quickSearch()" class="form-control field" placeholder="Quick Search..">
+                                <ul id="productGrid" class="dropdown-menu-right qcksrch_pnlbdy" style="right: auto; width: 85%; top: 36px; z-index: 100; " role="menu" aria-labelledby="dropdownMenu1 "> </ul>
+                                <div class="searchReslt"></div>
+                                <span class="input-group-btn" style="width:0px">
+                                    <button class="mysgnBtn btn-primary  fa-search fa" type="submit" style="margin-left: -5px;"> </button>
+                                </span>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navBarRight">
+                <li class="dropdown navBarSuprLi  ">
+                    <a href="#" class="dropdown-toggle " data-toggle="dropdown">Go To<b class="caret"></b></a>
+                    <ul class="dropdown-menu navBarSubLi">
+                        <li class="btn-link"><a href="~/Item/SearchItemsName"><i class="fa fa-search fa_Blue"></i>&nbsp;Advance Search</a></li>
+                        <li class="btn-link"><a href="~/Item/CompareItems"><i class="fa fa-retweet fa_Green"></i>&nbsp; Compare Products</a></li>
+                    </ul> <!-- sitemap -->
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right navBarRight ">
+                <li class="nav-lnk-nonDrp"><a href="~/Shop">Gallery Shops</a></li>
+                <li class="nav-lnk-nonDrp"><a href="~/Support">Support</a></li>
+                <li class="dropdown navBarSuprLi">
+                    @{
+                        if (Session["swi"] != null)
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="login_toggle();">
+                                @*<img src="content/desktop/images/hi.gif" width="15" height="15" />&nbsp;*@
+                                <img src="~/content/desktop/images/hi.png" width="40" height="20" />
+                                @Cust_Name  <b class="caret"></b>
+                            </a>
+                              <ul class="dropdown-menu navBarSubLi">
+                                  <li class="btn-link"><a href="~/Customers"><i class="fa  fa-gears  fa_Blue"></i>&nbsp; Show My Action Panel </a></li>              
+                                @if (true)
+                                {
+                                    if (Session["isadmin"] != "no")
+                                    {
+                                        @*<li class="btn-link">
+                                            <a href="#">
+                                                <span>
+                                                    <i class="fa fa-clock-o  fa_Red"></i>&nbsp;  Customers in Waiting List &nbsp;
+                                                    @{ int count = (int)ViewBag.wlst;
+                                                    <i class="badge " style="background-color: #d9534f;"> @count  </i>
+                                                    }
+                                                </span>
+                                            </a>
+                                        </li>*@
+                                        <li class="btn-link">
+                                            <a href="~/Item"><i class="fa  fa-list-ul  fa_Yellow"></i>&nbsp;  List Of Products  </a>
+                                        </li>
+                                    }
+                                }
+                                <li class="btn-link">
+                                    <a href="~/Customers/Edit"><i class="fa fa-wrench  fa_Gray_disable"></i>&nbsp;  Edit Profile </a>
+                                </li>
+                                <li class="btn-link" onclick="LogoutChecker ()">
+                                    <a><i class="fa fa-sign-out  fa_Green"></i>&nbsp;  Sign out </a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="login_toggle();">Sign In or Register <b class="caret"></b></a>
+                            <ul class="Mydropdown_menu  dropdown-menu box_bghome ">
+                                <li class="lginfld">
+                                    <div class="label label-primary"> <i class=" fa-user fa"></i></div>
+                                    <input type="text" id="UsernameLogin" autofocus="autofocus" autocomplete="off" class="form-control field " placeholder="Username ..">
+                                </li>
+                                <li class="lginfld">
+                                    <div class="label label-danger"> <i class=" fa-unlock-alt fa"></i></div>
+                                    <input type="password" id="PasswordLogin" autocomplete="off" class="form-control field " placeholder="Password ..">
+                                </li>
+                                <li class="lginfld">
+                                    <span id="LoginAlerts" style="position:relative;display:none">
+                                        <span class='alert-danger alert center-box'><i class="alert"><i class="fa-times fa "></i></i> Invalid Username or Password </span>
+                                    </span>
+                                    <span><button type="button" id="Login" class="mysgnBtn btn-primary lginBtn  " onclick="LoginChecker()"> Sign in </button></span>
+                                </li>
+                                <li class="divider"></li>
+                                <li class=" center-block alert " style="padding: 0px 10px 0px 10px;">
+                                    <dfn>
+                                        <span class="btn-link navBarDrpDwnSubLi"> <a href="~/Support/index#Forget_password"><i class="fa fa-wrench fa_Yellow"></i>&nbsp; Forget password ?? </a> </span>
+                                    </dfn>
+                                    <dfn style="border-right: solid 3px #b7b7b7; padding-left: 5%;">  </dfn>
+                                    <dfn class="warning right">
+                                        <span class="btn-link navBarDrpDwnSubLi"> <a href="~/Av_Cust/Create"><i class="fa fa-sign-in fa_Green"></i>&nbsp; Register now !! </a> </span>
+                                    </dfn>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+

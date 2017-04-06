@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>jQuery.Mobile.MVC</id>
+    <version>1.0.0</version>
+    <authors>ASP.NET team</authors>
+    <owners>ASP.NET team</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/aspnetcomponent_rtw_enu.htm</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Helpers for jQuery Mobile in ASP.NET MVC 4</description>
+    <dependencies>
+      <dependency id="jquery.mobile" version="1.1.0" />
+      <dependency id="Microsoft.AspNet.Mvc" version="4.0.20710.0" />
+      <dependency id="Microsoft.AspNet.Web.Optimization" version="1.0.0" />
+    </dependencies>
+  </metadata>
+</package>

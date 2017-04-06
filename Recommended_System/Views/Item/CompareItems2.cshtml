@@ -1,0 +1,264 @@
+﻿@model IEnumerable<Recommended_System.Models.Itemadder>
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "Compare";
+}
+
+<script src='~/Content/Desktop/MyScript.js'>
+    alert("asdasddsds");
+    @*var data =  @Html.Raw(JsonConvert.SerializeObject(this.Model))*@
+    //if (typeof (data_cmp_model) != null)
+
+
+</script>
+
+<h2> <span class="label label-info"> Compare Products </span> </h2>
+
+<p>
+    <div style="overflow-x:auto;overflow-y:no-display">
+        <table class="table-striped table-bordered table tbl flxDskMobTbl">
+            <tr>
+                <td></td>
+                @using (Html.BeginForm("CompareItems", "Item", FormMethod.Get))
+            {
+                <td>
+                    <div>
+                        <h4 class="label  label-danger"> Category</h4>
+                        <fieldset>
+                            <select id="CategoryID" name="CategoryID" class="form-control">
+                                <option value="0"> -- Select Category -- </option>
+                                @foreach (var item in ViewBag.CategoryID as List<Recommended_System.Models.Select_Item>)
+                                {
+                                    <option value="@item.id" selected="@item.selected">@item.value</option>
+                                }
+                            </select>
+                        </fieldset>
+
+                    </div>
+                    <br />
+                    <div class="pos_rltv">
+
+                        <h4 class="label label-success"> Add Items</h4>
+                        <div>
+                            <input id="itmsNameLst" autocomplete="off" onkeyup="searchForCompare()" name="itmsNameLst" class="form-control field" placeholder="Item1" />
+                            <ul id="productGrid_cmpr" class="dropdown-menu-left qcksrch_pnlbdy prdct__cmp " role="menu" aria-labelledby="dropdownMenu1"> </ul>
+                        </div>
+                        <div class="searchReslt" style="width:20%;"></div>
+                        <br />
+                        <button class="btn-info btn" type="button" onclick="lstCompateProducts()"> <i> Add  </i> <i class="fa  fa-plus-circle plsBtn"></i> </button>
+                    </div>
+                </td>
+                <td></td>
+                <td id="compartion_area">
+                    <div class="panel panel-default">
+                        <h4 class="label  tblHdr panel-heading " style="border-color: skyblue; border-top: thin solid #87CEEB;position: relative;">
+                            <span> Comparison  </span>
+                            <span class="btn right" style=" right: -5px;bottom:-5px;   position: absolute; color:#ebebeb;font-size:25px " title="End This comparison" onclick="ClearComparision()"><i class=" fa-times-circle-o fa "></i></span>
+                        </h4>
+                        <br /><br />
+                        <div id="content_cmpr" class="panel-body" style="padding-top: 50px;text-wrap:avoid;" onclick="set_cmplst_vals('@Model.ToList()')">
+                            @foreach (var item in Model)
+                            {
+                                <span class="btn btn-info prnt_cls" style="cursor:default" id="prnt_lbl_@Model.ToList().IndexOf(item)">
+                                    <span id="lbl_@Model.ToList().IndexOf(item)">@Html.DisplayFor(modelItem => item.item_name)</span>
+                                    <button type="submit" onclick="modifiLstCompareProducts('@item.item_name'  ,@Model.ToList().IndexOf(item))" class="close clsBtn">
+                                        <i class="fa-times-circle fa fa_Gray"></i>
+                                    </button>
+                                </span>
+                                if (Model.Last() != item)
+                                {<span> &nbsp;</span> <span class="label label-primary" id="pAndt_lbl_@Model.ToList().IndexOf(item)">&</span> <span> &nbsp;</span> }
+
+                            }
+
+
+
+                            @*<script type="text/javascript">
+                                    var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+                                </script>*@
+                        </div>
+                    </div>
+                </td>
+                <td></td>
+                <td><input type="submit" class="btn btn-primary btnCmp" value="Compare" /> </td>
+            }
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</p>
+<div style="overflow-x:auto">
+    <table class="table-striped table-bordered table tbl">
+        @if (Model.Count() != 0)
+        {
+            <thead>
+                <tr>
+                    <th class="th_tblHdr  alert  ">
+                        <ol class="breadcrumb">
+                            <li class="fa_Green h5">  Properties </li>
+                            <li class="fa_Yellow h4"><b>  @ViewBag.CompareCategory </b></li>
+                        </ol>
+                        <div class=" tblHdr divShrCmp centrLbl">
+
+                        </div>
+                    </th>
+                    @foreach (var item in Model)
+                    {
+                        <th class="th_tblHdr">
+                            <div>
+                                <a href="/Item/Details/@item.item_id" role="menuitem" tabindex="-1" title="more details of @item.item_name ">
+                                    <p>
+                                        @{ var indx = 0; /// url for no img
+                                         var img_rat_src = ""; }
+                                        @foreach (var i in @item.p)
+                                        {
+                                            if (i.P_Name.ToLower() == "image")
+                                            {
+                                                indx = item.p.IndexOf(i);
+                                                List<string> ls = item.pv;
+                                                string ss = ls.ElementAt<string>(indx);
+                                                img_rat_src = ss;
+                                                <img class="img_hom_shw_prdct img-circle" src="@img_rat_src" width="50" height="50" />
+                                            }
+                                        }
+
+                                    </p>
+                                    <p>
+                                        <span class="label label-info  tblHdr tbl label alert-info h2 btn-link ">
+                                            @Html.DisplayFor(modelItem => item.item_name)
+                                        </span>
+                                    </p>
+                                </a>
+                            </div>
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <table class="table-striped table-bordered table">
+                            <tr> <td> <span class="alert-success"> Rating </span> </td></tr>
+                            @foreach (var i in @Model.ElementAt(0).p)
+                            {
+                                if (i.P_Name.ToLower() != "image")
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="alert-warning">
+                                                @if (i.P_Name.ToLower() == "date")
+                                                {
+                                                    <span> Inserted </span>
+                                                }
+                                                @Html.DisplayFor(modelItem => i.P_Name)
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+
+                        </table>
+                    </td>
+                    @foreach (var item in Model)
+                    {
+                        <td>
+                            <table class="table-striped table-bordered table">
+                                @foreach (var itm in item.pv)
+                                {
+                                    if (item.pv.IndexOf(itm) == item.pv.IndexOf(item.pv.First()))
+                                    //if (item.pv.IndexOf(itm) + 1 == item.pv.Count)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <span class="fa_Blue">
+                                                    <i class="fa  fa-thumbs-o-up  fa_Blue"></i>
+                                                    ( @Html.DisplayFor(modelItem => item.up) )
+                                                </span>
+                                                <span class="fa_Red">
+                                                    <i class="fa  fa-thumbs-o-down  fa_Red "></i>
+                                                    ( @Html.DisplayFor(modelItem => item.down) )
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                    if (  itm  !=  @item.pv.ElementAt( @item.p.IndexOf( @item.p.Where(c => c.P_Name.ToLower() == "image").First() )  ) )
+                                    {
+                                        <tr><td> @Html.DisplayFor(modelItem => itm) </td></tr>
+                                    }
+
+                                }
+                                @*<tr> <td><img src="item.pv.ElementAt(@item.p.IndexOf(@item.p.Where(c => c.P_Name == "+image'+").first().p_id ) - 1)" alt="Sample Image" width="100" height="100" /> </td> </tr>*@
+                            </table>
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+@**@
+
+@* @item.pv.Where(m => item.p.Where(c => c.P_Name  == "image")  *@
+
+@*------------------------------------*@
+
+
+@*<table class="table-striped table-bordered table">
+
+        <tr>
+            <th>
+                @ViewBag.CompareCategory
+            </th>
+            @if (Model.Count() != 0)
+            {
+                foreach (var item in Model.ElementAt(0).p)
+                {
+            <th>
+                @Html.DisplayFor(modelItem => item.P_Name)
+            </th>
+                }
+            }
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.item_name)
+                </td>
+                @if (Model.Count() != 0)
+                {
+                    foreach (var itm in item.pv)
+                    {
+                <td>
+                    @Html.DisplayFor(modelItem => itm)
+                </td>
+                    }
+                }
+
+            </tr>
+        }
+
+        <tr>
+            <td><input type="submit" class="btn btn-primary" value="Add One Of @ViewBag.CompareCategory " /> </td>
+        </tr>
+    </table>*@
+@*//======================================= Progresss =========================*@
+@*<tr> <td> <progress type="" max="@ViewBag.MaxRate" value="" >  </progress> </td></tr>
+    <tr> <td> <progress type="" max="@ViewBag.MinRate" value="" >  </progress> </td></tr>
+     min="@ViewBag.MinRate"*@
+@*<tr>
+        <td>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" style="width: 35%">
+                    <span class="sr-only">35% Complete (success)</span>
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: 10%">
+                    <span class="sr-only">10% Complete (danger)</span>
+                </div>
+            </div>
+        </td>
+    </tr>*@
+

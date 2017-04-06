@@ -1,0 +1,22 @@
+﻿@model Recommended_System.Models.Item_value
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Item_value</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.value)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.value)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

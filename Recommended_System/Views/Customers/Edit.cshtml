@@ -1,0 +1,121 @@
+﻿@model Recommended_System.Models.Customers
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="alert panel-heading alert-info">Edit My Account</div>
+    <fieldset class="pager center-block panel-default">
+        <table class="panel    table-striped" style="width:100%">
+            @*<tr>
+                    <td class="editor-label alert ">
+                        @Html.HiddenFor(model => model.Cust_Id)
+                        <span class="editor-label">
+                            @Html.LabelFor(model => model.Phone, new { @class = "label label-info" })
+                        </span>
+                        <span class="editor-field">
+                            @Html.EditorFor(model => model.Phone, new { @Class = "form-control field" })
+                            @Html.ValidationMessageFor(model => model.Phone)
+                        </span>
+                    </td>
+                </tr>*@
+
+            <tr>
+                <td class="editor-label alert ">
+                    <span class="editor-label pull-left">
+                        @Html.LabelFor(model => model.Cust_Nme, new { @class = "label label-info" })
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.Cust_Nme, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Cust_Nme)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label alert ">
+                    <span class="editor-label pull-left">
+                        @Html.LabelFor(model => model.E_mail, new { @class = "label label-info" })
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.E_mail, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.E_mail)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label alert ">
+                    <span class="editor-label pull-left">
+                        @Html.LabelFor(model => model.Password, new { @class = "label label-info"  })
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.Password, new { @Class = "form-control field" , @type="password" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label alert ">
+                    <span class="editor-label pull-left">
+                        @Html.LabelFor(model => model.Phone, new { @class = "label label-info" })
+                    </span>
+                    @Html.TextBoxFor(model => model.Phone, new { @Class = "form-control field" ,@type="number" })
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </td>
+            </tr>
+            <tr class="hidden">
+                <td class="editor-label alert ">
+                    <span class="hidden">
+                        @Html.LabelFor(model => model.Account_count, new { @class = "label label-info" })
+                    </span>
+                    <span class="hidden">
+                        @Html.EditorFor(model => model.Account_count, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Account_count)
+                    </span>
+                </td>
+            </tr>
+            <tr class="hidden">
+                <td class="editor-label alert ">
+                    <span class="hidden">
+                        @Html.LabelFor(model => model.Admin)
+                    </span>
+                    <div class="hidden">
+                        @Html.EditorFor(model => model.Admin)
+                        @Html.ValidationMessageFor(model => model.Admin)
+                    </div>
+                </td>
+            </tr>
+            <tr class="hidden">
+                <td class="editor-label alert ">
+                    <span class="hidden">
+                        @Html.LabelFor(model => model.Payment)
+                    </span>
+                    <div class="hidden">
+                        @Html.EditorFor(model => model.Payment)
+                        @Html.ValidationMessageFor(model => model.Payment)
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="editor-label alert ">
+                    <input type="submit" value="Save changes" class="btn btn-primary" />
+                    &nbsp;&nbsp;&nbsp;
+                    <span>
+                        @Html.ActionLink("Cancel", "Index", new { @Class = "btn-link btn" })
+                    </span>
+                </td>
+            </tr>
+        </table>
+
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,70 @@
+﻿@model Recommended_System.Models.Shop_adder
+
+@{
+    ViewBag.Title = @Model.shop_name + "'s shop";
+}
+<div>
+    <span class="alert-info alert" >
+        @Model.shop_name 's shop
+    </span>
+    <br /><br />
+</div>
+<span class="well well-sm">
+    <span class="label alert-info ">
+        <i class="fa fa-plus-circle"></i>
+        @Html.ActionLink("Add item to this shop ", "Create", "Item", new { id = @Model.shop_id }, null)
+    </span>
+    &nbsp;
+    <span class="label alert-success ">
+        <i class="fa fa-edit"></i>
+        @Html.ActionLink("Edit This Shop ", "Edit", new { id = @Model.shop_id })
+    </span>
+    &nbsp;
+    <span class="label alert-success ">
+        <i class="fa fa-trash-o"></i>
+        @Html.ActionLink("Delete This Shop ", "Delete", new { id = @Model.shop_id })
+    </span>
+    &nbsp;
+</span>
+<br /><br />
+<table class="table table-striped table-bordered" style="text-align:center">
+    <tr>
+        <th>
+            <span class="label label-success centrLbl">
+                Items
+            </span>
+        </th>
+        <th>
+            <span class="label label-warning centrLbl">
+                Category
+            </span>
+        </th>
+        <th>
+            <span class="label label-primary centrLbl">
+                Take an Action
+            </span>
+        </th>
+    </tr>
+
+    @for (int i = 0; i < Model.sv.Count; i++)
+    {
+        <tr>
+            <td>
+
+                @Html.ActionLink(Model.sv[i], "Details", "Item", new { id = Model.indx[i] }, null)
+            </td>
+            <td>
+
+                @Model.categ[i]
+            </td>
+            <td>
+                <i class=" fa-edit fa fa_Green "></i>&nbsp;
+                @Html.ActionLink("Edit", "Edit", "Item", new { id = Model.indx[i] }, null) &nbsp;&nbsp;|&nbsp;&nbsp;
+                <i class=" fa-trash-o fa fa_Red "></i>&nbsp;
+                @Html.ActionLink("Delete", "Delete", "Item", new { id = Model.indx[i] }, null)
+
+            </td>
+
+        </tr>
+    }
+</table>

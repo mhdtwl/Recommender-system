@@ -1,0 +1,27 @@
+﻿@model Recommended_System.Models.Itemadder
+
+@{
+    ViewBag.Title = "img";
+}
+
+<div class="alert alert-info"> Add an image to item  </div>
+
+@using (Html.BeginForm("Action", "Item", FormMethod.Post,
+                          new   { enctype = "multipart/form-data" }))
+                           
+{
+  
+    @Html.HiddenFor(m => m.item_id, new { @Value =Model.item_id })
+    @Html.HiddenFor(m => m.shop_id, new { @Value =Model.shop_id })
+    <div class="label label-primary h4">
+        <label for="file">Upload Image:</label>
+    </div>
+    <div class="well well-lg">
+        <input type="file" name="file" id="file" style="width: 100%;" class="form-control field" />
+    </div>
+
+    <div>
+        <input type="submit" name="Save_Img_Upload" value="Save" class="submit btn btn-primary" />
+        <input type="submit" name="Skip_Img_Upload" value="Skip" class="submit btn-link btn-info" />
+    </div>
+}

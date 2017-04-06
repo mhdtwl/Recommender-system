@@ -1,0 +1,169 @@
+﻿@model IEnumerable<Recommended_System.Models.Itemadder>
+
+@{
+    ViewBag.Title = "Search Items Advance";
+}
+<script>
+    $(function () {
+        $(".map_header_handel").draggable();
+    });
+</script>
+<h2><span class="label label-info">  Advance Search </span> </h2>
+
+<p>
+    <div style="overflow-x:auto;overflow-y:no-display">
+        <table class="table-striped table-bordered table flxDskMobTbl">
+            <tr>
+                @using (Html.BeginForm("SearchItemsName", "Item", FormMethod.Get))
+            {
+                    @*<td> Search: @Html.TextBox("")<br />  </td>*@
+                    <td></td>
+                    <td>
+                        <br />
+                        <div>
+                            <input id="keyword" name="keyword" class="form-control field" placeholder="Search.." />
+                        </div>
+                        <br />
+                        <div>
+                            <input type="submit" class="btn btn-primary center-block btnCmp" style="margin-top: 0% !important;padding:14px !important;" value="search" />
+                        </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <br />
+                        <div>
+                            <div> <h4 class="label  label-danger centrLbl"> Category </h4> </div>
+                            <fieldset>
+                                <select id="Category_name" name="Category_name" class="form-control">
+                                    <option value="0"> All Categories</option>
+                                    @foreach (var item in ViewBag.CategoryName as List<Recommended_System.Models.Select_Item>)
+                                {
+                                        <option value="@item.id" selected="@item.selected">@item.value</option>
+                                }
+                                </select>
+                            </fieldset>
+                        </div>
+                        <br />
+                        <div>
+                            <div> <h4 class="label  label-success centrLbl"> Customer </h4> </div>
+                            <fieldset>
+                                <select id="Customer_name" name="Customer_name" class="form-control">
+                                    <option value="0"> Any Customers</option>
+                                    @foreach (var item in ViewBag.Customer_name as List<Recommended_System.Models.Select_Item>)
+                                {
+                                        <option value="@item.id" selected="@item.selected">@item.value</option>
+                                }
+                                </select>
+                            </fieldset>
+                        </div>
+                        <br />
+                    </td>
+                    <td></td>
+                    <td class="cntnr_rltv">
+                        <br />
+                        <div>
+                            <span class="label label-warning txtalgn "> we give the nearest for you &nbsp; <i class="fa fa-smile-o" ></i> &nbsp; </span>
+                        </div>
+                        <br />
+                        <div>
+                            <!-- map_toggle() // shwGestLocat() -->
+                            <div class=" btn btn-default list-group-item  shwGstLctn " onclick=" map_toggle()" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-map-marker" style="color:rgba(183, 0, 0, 1);"></span> @*//"fa fa-map-marker"*@
+                                Show My Location <span class="caret" style="margin:4px;"></span>
+                            </div>
+                            <div id="map" class="map_header_handel">
+                                <div class="Guest_Location" id="Guest_Location">
+                                    @Html.Partial("GuestGeoLocations")
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+                    @*<td></td>*@
+                    <td></td>
+            }
+            </tr>
+        </table>
+    </div>
+</p>
+<script>
+
+
+</script>
+<br />
+<p>
+    <div style="overflow-x:auto">
+        <script type="text/javascript">
+            //$("#Prod_Srt").click(alert("Prod_Srt"));
+        </script>
+        <table class="table-striped table-bordered table">
+            <tr>
+                <th>
+            
+                   <span class=" label label-info centrLbl" >
+                        Product
+                    </span>
+                    @*<span   >
+                        <button type="submit">
+                            <i class='fa-sort fa btn fa_Blue right' id='Prod_Srt'></i>
+                        </button>                                            
+                    </span>*@
+                </th>
+                <th>
+                    <span class="label label-info centrLbl">
+                        Category
+                    </span>
+                </th>
+                <th>
+                    <span class="label label-info centrLbl">
+                        Shop Name
+                    </span>
+                </th>
+                <th>
+                    <span class="label label-info centrLbl">
+                        Shop Distance
+                    </span>
+                </th>
+                <th>
+                    <span class="label label-info centrLbl">
+                        Shop Location
+                    </span>
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.item_name, "Details", new { id = item.item_id })
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => (item.cat_name))
+                </td>
+                <td>
+                    @Html.ActionLink(item.shop.name, "../Shop/guest_show", new { id = item.shop.id })
+                </td>
+                <td>
+                    @*@item.LocLati  ,   @item.LocLong*@
+                    <span id="Distace_div">
+                        @item.distace
+                        K.M.
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => (item.shop.Locat))
+                </td>
+            </tr>
+            }
+        </table>
+        <div id="last"></div>
+    </div>
+</p>
+<script>
+    function Get_Distance(lat2, lon2) {
+        console.log(lat2, lon2);
+    }
+
+
+</script>

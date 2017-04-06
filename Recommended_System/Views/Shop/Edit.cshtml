@@ -1,0 +1,75 @@
+﻿@model Recommended_System.Models.Shop
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="alert panel-heading alert-info">Edit My Shop </div>
+    <fieldset class="pager center-block panel-default panel">
+        <table class="panel-body    table-striped" style="width:100%">
+            <tr>
+                <td class="editor-label alert ">
+                    <span class="editor-label pull-left">
+                        @Html.HiddenFor(model => model.S_Id)
+                        <span class="label label-info">
+                            Phone
+                        </span>
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.Phone, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Phone)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label alert ">
+                    <span class="editor-label pull-left ">
+                        <span class="label label-info">
+                            Delevery
+                        </span>
+
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.Delevery, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Delevery)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label alert ">
+                    <span class="editor-label pull-left">
+                        <span class="label label-info">
+                            @Html.LabelFor(model => model.About)
+                        </span>
+                    </span>
+                    <span class="editor-field">
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.About, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.About)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label alert ">
+                    <input type="submit" value="Save changes" class="btn btn-primary" />
+                    &nbsp;&nbsp;&nbsp;
+                    <span>
+                        @Html.ActionLink("Cancel", "Index", new { @Class = "btn-link btn" })
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

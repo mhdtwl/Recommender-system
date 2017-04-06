@@ -1,0 +1,59 @@
+﻿@model Recommended_System.Models.Av_Cust
+
+@{
+    ViewBag.Title = "Renew Now !!";
+    var ss = ViewBag.sss;
+    var dd = "";
+    if (ViewBag.pass != null)
+    { dd = ViewBag.pass; }
+
+}
+<div class="panel">
+    <span class=" h2 panel-heading  alert-info alert">Renew Now</span>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="panel-body panel">
+            <ul class="list-unstyled panel panel-body panel-default">
+                <li>
+                    <div class="well-sm well" >
+                        <span>
+                            @*@dd*@
+                            @foreach (var a in ss)
+                        {
+                            <br/>
+                            int id = a.Sub_Id;
+                            decimal price = a.Price;
+                            string type = a.Type;
+                            double time = a.Time_Period;
+                                <span class="editor-field">
+                                    @Html.RadioButton("snam", type, true, new { @Class = " field" }) @type with a price= @price $ <b class="label alert-info"> Per Shop </b>
+                                </span>
+                                
+                                
+                        }
+                            <span class="label alert-success "> Recommender</span>
+                            <br />
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <p>
+                        <br/>
+                        <input type="submit" value="Renew" class="btn btn-primary" />
+                    </p>
+                </li>
+            </ul>
+        </fieldset>
+    }
+</div>
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,49 @@
+﻿@model Recommended_System.Models.Shop
+
+@{
+    ViewBag.Title = "Delete a shop ";
+}
+
+<div class="h4 alert-warning alert">
+    Delete Shop
+</div>
+
+<div class="alert-danger alert h2">Are you sure you want to delete this Shop ? </div>
+
+<fieldset class="well" style="text-align:center">
+    <div>
+        <span>
+            <span class="display-label label alert-info">
+                Name
+            </span>&nbsp;&nbsp;&nbsp;
+            <span class="display-field btn disabled alert-danger">
+                @Html.DisplayFor(model => model.About)
+            </span>
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="display-label label alert-info">
+            @Html.DisplayNameFor(model => model.Phone) number
+        </span>
+        <span class="display-field btn disabled alert-danger">
+            @Html.DisplayFor(model => model.Phone)  
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        <span class="display-label label alert-info">
+            @Html.DisplayNameFor(model => model.Location) at 
+        </span>
+        <span class="display-field btn disabled alert-danger">
+            @Html.DisplayFor(model => model.Location)
+        </span>
+        
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <div style="text-align:center">
+            <input type="submit" value="Delete" class="btn-danger btn" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </p>
+}

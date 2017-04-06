@@ -1,0 +1,81 @@
+﻿@*@Scripts.Render("~/bundles/jquery") <!-- add this -->
+<!-- Sidebar -->
+<div id="sidebar">
+
+    <!-- Search -->
+    <div class="search panel-info panel">
+        <h5 class=" panel-heading">Search by <span></span></h5>
+        <div class="pnlbdy panel-body">
+            @using (Html.BeginForm()) //RedirectToAction("",new {id=tid})
+            {
+                <div class="pos_rltv">
+                    <input type="text" id="quick_search" autocomplete="off" onkeyup="quickSearch()" class="form-control field" placeholder="Quick Search.." />
+                    <ul id="productGrid" class="dropdown-menu-right qcksrch_pnlbdy" style="right:auto;width:100%" role="menu" aria-labelledby="dropdownMenu1"> </ul>
+                    <div class="searchReslt"></div>
+                </div>
+              <input type="submit" id="searchBtn" class="searchBtn btn btn-primary" value="Search" onclick="window.location.href('@Url.Action("SearchItemsName", "Item")')" />
+            }
+            <p>
+                <script type="text/javascript">
+                    ////$("#quick_search").focus(alert("Iam txbox clicked"));
+                </script>
+                <i class="fa fa-location-arrow"></i><a href="~/Item/SearchItemsName" class="bul">Advanced Search</a><br />
+                <i class="fa fa-location-arrow"></i><a href="~/Item/CompareItems" class="bul">Compare Some Products</a>
+            </p>
+        </div>
+    </div>
+    <!-- End Search -->
+    <!-- Registration -->
+    @*<div class="box regis panel-info panel ">
+        <h5 class="panel-heading ">Registration <span></span></h5>
+        <div class="box-content panel-body">
+            <p><i class="fa fa-location-arrow"></i> <a href="#" class="bul"> Register OR  Sign in  </a> </p>
+        </div>
+    </div>
+    <!-- End Registration -->
+    <!-- Categories -->
+    <div class="box categories  panel-info panel">
+        <h5 class=" panel-heading">Categories <span></span></h5>
+        <div class="box-content panel-body">
+            <ul>
+                <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
+                    @foreach (var item in ViewBag.category as List<Recommended_System.Models.Categories>)
+                    {
+                        <li><a href="#"><i class="fa fa-location-arrow"> @item.Name</i></a></li>
+                    }
+                </asp:Content>
+            </ul>
+        </div>
+    </div>
+    <!-- End Categories -->*@
+</div>
+
+
+
+
+
+
+
+
+
+<!-- End Sidebar -->
+@*<label>Category</label>
+    <select class="field dropdown-menu">
+        <option value="">All Categoryies</option>
+        @foreach (var item in ViewBag.category as List<Recommended_System.Models.Categories>)
+        {
+            <option>
+                @Html.DisplayFor(modelItem => item.Name)
+            </option>
+        }
+    </select>
+    <div class="inline-field">
+        <label>Price</label>
+        <select class="field small-field dropdown-menu">
+            <option value="">$10</option>
+        </select>
+        <label>to:</label>
+        <select class="field small-field dropdown-menu">
+            <option value="">$50</option>
+        </select>
+    </div>*@*@ 

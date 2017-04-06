@@ -1,0 +1,45 @@
+﻿@model Recommended_System.Models.SubScription_Kind2
+
+@{
+    ViewBag.Title = "Delete a SubScription";
+}
+
+<div class="h4 alert-warning alert">
+     Delete SubScription 
+</div>
+
+<div class="alert-danger alert h2">Are you sure you want to delete this SubScription ? </div>
+
+<fieldset class="well" style="text-align:center">
+    <div class="display-label label alert-info">
+        @Html.DisplayNameFor(model => model.Type)
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <div class="display-field btn disabled alert-danger">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label label alert-info">
+        @Html.DisplayNameFor(model => model.Price)
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <div class="display-field btn disabled alert-danger">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label label alert-info">
+        @Html.DisplayNameFor(model => model.Time_Period)
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <div class="display-field btn disabled alert-danger">
+        @Html.DisplayFor(model => model.Time_Period)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p class="text-center">
+        <input type="submit" value="Delete" class=" btn btn-danger" />  |
+        @Html.ActionLink("Back to List", "Index" , new { @class="btn btn-link "} )
+    </p>
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Recommended_System.Models.Items>
+@{
+    ViewBag.Title = "Products";
+}
+
+
+<div class="panel-heading " style="position:relative">
+    <span class="well well-sm">
+        <a href="#">
+            <span><i class=" "><b>  Hi Admin </b></i>,</span>&nbsp;
+            <span><i class=" "><b>  Here's the all products in this Website </b></i></span>&nbsp;
+        </a>
+    </span>
+</div>
+<br/><br />
+<table class="table table-striped table-bordered" style="text-align:center">
+    <tr style="text-align:center">
+        <th>  <div class="panel alert-info  info" style="text-align:center"> 
+                  <span class="label alert-success"> # </span>
+            </div> </th>
+        <th>
+            <div class="panel  " style="text-align:center">
+                <span class="label alert-success"> Product name </span>
+            </div>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @Model.ToList().IndexOf(item)  </td>
+            <td>
+                  @Html.ActionLink(item.T_Name , "Details/"+item.T_Id ) 
+           </td>
+        </tr>
+    }
+    <tr>
+
+</table>

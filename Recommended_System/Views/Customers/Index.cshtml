@@ -1,0 +1,104 @@
+﻿@model Recommended_System.Models.Customers
+
+@{
+    if (ViewBag.wlst == null)
+    { ViewBag.Title = "Customer Panel"; }
+    else if ((int)ViewBag.wlst == 0)
+    { ViewBag.Title = "Customer Panel"; }
+    else
+    { ViewBag.Title = "(" + (int)ViewBag.wlst + ")Customer Panel"; }
+}
+
+@{
+
+    if (ViewBag.id != null)
+    {
+        if (Session["renew"] != null) {
+        
+            <div class="alert alert-warning">
+                    <a href="../Av_Cust/Renew">
+                        <i class="fa-tags fa fa_Yellow"></i> &nbsp; @Session["renew"] <i class="btn-link alert-warning "><b>  Renew !! </b></i>
+                    </a>
+                </div>
+        
+            
+            
+        }
+        
+        
+        
+        
+        bool isadmin = true;
+        string co = "";
+        if (ViewBag.counters != null)
+        {
+            co = ViewBag.counters;
+            ViewBag.counters = null;
+        }
+        int id = (int)ViewBag.id;
+        string nam = (string)ViewBag.nam;
+
+        if (Session["isadmin"] == "no")
+        {
+            isadmin = false;
+
+        }
+        <h1><span class="label alert-info "> Action Panel </span></h1>
+        if (isadmin)
+        {
+
+            int count = (int)ViewBag.wlst;
+            <br />
+            <div class="panel ">
+                @if (!String.IsNullOrEmpty(@co)) {
+                <div class="alert-danger alert h3"> @co </div>
+                }
+                <h1>
+                    <span class="panel-heading " style="position:relative">
+                        <a href="~/Customers/Waiting">
+                            <span><i class="btn-link "><b>  Waiting List </b></i></span>&nbsp;
+                            <span class="badge " style="position: absolute; right: 0px; background-color: #d9534f;">@count</span>
+
+                        </a>
+                    </span>
+                    @*@Html.ActionLink("Waiting List = " + count, "Waiting")*@
+                </h1>
+                <div class="alert alert-success">
+                    <a href="../SubScription">
+                        <i class="fa-money fa fa_Green"></i> &nbsp;  <i class="btn-link alert-success "><b>  Modify SubScription Kinds </b></i>
+                    </a>
+                </div>
+
+                <div class="alert alert-warning">
+                    <a href="../Category">
+                        <i class="fa-tags fa fa_Yellow"></i> &nbsp; <i class="btn-link alert-warning "><b>  Modify Category </b></i>
+                    </a>
+                </div>
+
+                <div class="alert alert-info">
+                    <a href="../Customers/ListCustomers">
+                        <i class="fa-users fa fa_Blue"></i> &nbsp; <i class="btn-link alert-info "><b> Modify Customer  </b></i>
+                    </a>
+                </div>
+            </div>
+
+
+        }
+        if (!isadmin)
+        {
+            if (!String.IsNullOrEmpty(@co)) { 
+            <div class="alert-danger alert h3"> @co </div>
+                }
+            <div class="alert alert-success">
+                <a href="../Shop">
+                    <i class="fa-building-o fa fa_Green"></i> <i class="fa-building-o fa fa_Green"></i> <i class="fa-building-o fa fa_Green"></i>
+                    &nbsp; <i class="btn-link alert-success "><b> Modify Shops  </b></i>
+                </a>
+            </div>
+
+
+
+        }
+    }
+
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jquery.mobile.mvc.dll</id>
+    <version>0.1.1</version>
+    <title>jQuery Mobile MVC Razor Helpers</title>
+    <authors>Darren Horrocks</authors>
+    <owners>Darren Horrocks</owners>
+    <licenseUrl>https://github.com/bizzehdee/jquery.mobile.mvc/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/bizzehdee/jquery.mobile.mvc</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fluent implementation of ASP.NET-MVC HTML helpers for jQuery Mobile</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright Darren Horrocks 2014</copyright>
+    <tags>jquery mobile fluent razor mvc</tags>
+  </metadata>
+</package>

@@ -1,0 +1,48 @@
+﻿<span style=" position: absolute; ">
+    <span style="    width: 20px; ">
+        <span>
+            <!-- Search -->
+
+            <span class="pos_rltv" style=" margin-left:30px; top:10px;   position: relative;">
+                <form action="/" method="post" style="width: 226px;position: absolute;">
+                    <div style="     position: relative;       ">
+                        <span class="left" style="    position: absolute;       ">
+                            <input type="text" id="quick_search" autocomplete="off" onkeyup="quickSearch()" class="form-control field" placeholder="Quick Search..">
+                        </span>
+                        <i class=" fa-search fa mybtn" style="color: lightgrey ;position: absolute; margin-left: 150px; margin-top:2px"></i>
+                    </div>
+                    <ul id="productGrid" class="dropdown-menu-right qcksrch_pnlbdy" style="right: auto; width: 100%; top: 36px; z-index: 100; " role="menu" aria-labelledby="dropdownMenu1 "> </ul>
+                    <div class="searchReslt"></div>
+                    <span class="right btn " style=" position: absolute; margin-left: 185px;  ">
+                        <input type="submit" value="Advance Search" id="searchBtn" class="btn-link" onclick="window.location.href('~/Item/SearchItemsName')"><br />
+                        <input type="submit" value="Advance Compare" id="searchBtn" class="btn-link" onclick="window.location.href('~/Item/CompareItems')">
+                    </span>
+                </form>
+            </span>
+        </span>
+
+    </span>
+</span>
+<style>
+    .mybtn {
+        /*display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        
+        vertical-align: middle;
+       /* white-space: nowrap; */
+        /* cursor: pointer; */
+        /*-webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+       ;*/
+    }
+</style>

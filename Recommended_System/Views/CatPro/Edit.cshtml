@@ -1,0 +1,32 @@
+﻿@model Recommended_System.Models.Cat_pro
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cat_pro</legend>
+
+        @Html.HiddenFor(model => model.Cat_Id)
+
+        @Html.HiddenFor(model => model.P_Id)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

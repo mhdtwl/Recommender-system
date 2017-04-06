@@ -1,0 +1,179 @@
+﻿@model Recommended_System.Models.Itemadder
+
+@{
+    ViewBag.Title = @Model.item_name;
+}
+
+<fieldset>
+
+    <div> <div class="alert panel-heading alert-info h2"> @Model.item_name</div></div>
+    <br /><br />
+
+    <div style="display:inline-flex; width:100%" class="panel ">
+
+        @*<div style="width:50%">
+            @for (int i = 0; i < @Model.pv.Count; i++)
+            {
+                if (Model.p[i].P_Name.ToLower() == "image")
+                {
+                    <div>  <img src=@Model.pv[i] class="img-thumbnail" style="width:100%; height:auto" /> </div>
+                }
+            }
+            @if (Session["swi"] != null)
+            {
+                <br/>
+                <span class="well-sm well">    @Html.ActionLink("Edit this product ", "Edit/" + @Model.item_id, new { @class = "btn btn-link" }) </span>
+            }
+        </div>
+        <div style="width:50%; float:right;margin-top:2%;padding-left:20px" class="right">
+            <div>
+                <div><span class="label alert-warning">Category</span><span class="label label-success h5">  @Model.cat_name  </span></div> <br /><br />
+                <div>
+                    <span class="alert well  h6">
+                        <i class="fa fa-thumbs-o-up fa_Blue">( @Model.up ) </i> | <i class="fa fa-thumbs-o-down fa_Red">( @Model.down )</i>
+                    </span>
+                </div>
+            </div>
+            <br /><br />
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <span> @Model.item_name  Properties</span>
+                </div>
+                <div class="panel-body">
+                    <table class="table-striped  table">
+
+                        @for (int i = 0; i < @Model.pv.Count; i++)
+                        {
+                            if (Model.p[i].P_Name.ToLower() == "photo" || Model.p[i].P_Name.ToLower() == "image")
+                            {
+                            }
+                            else
+                            {
+                                <tr><td><h5><span class="label alert-info">@Model.p[i].P_Name  </span> </h5></td><td>@Model.pv[i]</td></tr>
+                            }
+                        }
+                        <tr><td><span class="label alert-success">Like</span></td><td>@Model.up</td></tr>
+                        <tr><td><span class="label alert-danger">Dislike</span></td><td>@Model.down</td></tr>
+                        @if (Session["swi"] == null)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="btn btn-block ">
+                                        <a href="@Url.Action("rate", "Item", new { id = 1, tid = Model.item_id })">
+                                            <i class="fa fa-thumbs-up fa_Blue"></i>
+                                            <i>  I like this </i>
+                                        </a>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="btn-block btn">
+                                        <a href="@Url.Action("rate", "Item", new { id = 0, tid = Model.item_id })">
+                                            <i class="fa fa-thumbs-up fa_Red"> </i>
+                                            <i>  I dislike this </i>
+                                        </a>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>*@
+
+
+        @*.........................................*@
+        <ul class="list-inline list-unstyled">
+            <li class="mylstNewProd">
+                <div>
+                    @for (int i = 0; i < @Model.pv.Count; i++)
+                    {
+                        if (Model.p[i].P_Name.ToLower() == "image")
+                        {
+                            <div>  <img src=@Model.pv[i] class="img-thumbnail" style="width:100%; height:auto" /> </div>
+                        }
+                    }
+                    @if (Session["swi"] != null)
+                    {
+                        <br />
+                        <span class="well-sm well">    @Html.ActionLink("Edit this product ", "Edit/" + @Model.item_id, new { @class = "btn btn-link" }) </span>
+                    }
+                </div>
+            </li>
+            <li class="mylstRatProd">
+                <div style="margin-top:2%;padding-left:20px" class="">
+                    <div>
+                        <div><span class="label alert-warning">Category</span><span class="label label-success h5">  @Model.cat_name  </span></div> <br /><br />
+                        <div>
+                            <span class="alert well  h6">
+                                <i class="fa fa-thumbs-o-up fa_Blue">( @Model.up ) </i> | <i class="fa fa-thumbs-o-down fa_Red">( @Model.down )</i>
+                            </span>
+                        </div>
+                    </div>
+                    <br /><br />
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <span> @Model.item_name  Properties</span>
+                        </div>
+                        <div class="">
+                            <table class="table-striped  table">
+
+                                @for (int i = 0; i < @Model.pv.Count; i++)
+                                {
+                                    if (Model.p[i].P_Name.ToLower() == "photo" || Model.p[i].P_Name.ToLower() == "image")
+                                    {
+                                    }
+                                    else
+                                    {
+                                <tr><td><h5><span class="label alert-info">@Model.p[i].P_Name  </span> </h5></td><td>@Model.pv[i]</td></tr>
+                                    }
+                                }
+                                <tr><td><span class="label alert-success">Like</span></td><td>@Model.up</td></tr>
+                                <tr><td><span class="label alert-danger">Dislike</span></td><td>@Model.down</td></tr>
+                                @if (Session["swi"] == null)
+                                {
+                                <tr>
+                                    <td>
+                                        <span class="btn btn-block ">
+                                            <a href="@Url.Action("rate", "Item", new { id = 1, tid = Model.item_id })">
+                                                <i class="fa fa-thumbs-up fa_Blue"></i>
+                                                <i>  I like this </i>
+                                            </a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="btn-block btn">
+                                            <a href="@Url.Action("rate", "Item", new { id = 0, tid = Model.item_id })">
+                                                <i class="fa fa-thumbs-up fa_Red"> </i>
+                                                <i>  I dislike this </i>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+       
+       
+
+
+    </div>
+
+
+
+</fieldset>
+<p>
+    @if (Session["swi"] == null)
+    {@Html.ActionLink("Back ", "Index", new { @class = "btn btn-link" })}
+
+    else
+    {
+       <span class="well-sm well">  @Html.ActionLink("Back ", "../Shop/shop_it/" + @Model.shop_id, new { @class = "btn btn-link" })
+           </span>
+
+    }
+
+</p>

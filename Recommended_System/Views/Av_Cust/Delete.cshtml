@@ -1,0 +1,61 @@
+﻿@model Recommended_System.Models.Av_Cust
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Av_Cust</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cust_Nme)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cust_Nme)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.E_mail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.E_mail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Account_count)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Account_count)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Start_Time)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Start_Time)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Password)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

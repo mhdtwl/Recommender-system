@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Recommended_System.Models.Shop>
+
+@{
+    ViewBag.Title = "Gallery Shops";
+    int id = 0;
+    bool isadmin = true;
+    if (Session["swi"] != null)
+    {
+        id = (int)Session["swi"];
+        if (Session["isadmin"] == "no")
+        {
+            isadmin = false;
+        }
+        if (Session["isadmin"] == "yes")
+        {
+            isadmin = true;
+        }
+    }
+}
+
+
+<br />
+@{
+    if (Session["swi"] != null && !isadmin)
+    {
+        <p>
+            <span class="panel panel-info h3 " style="position:relative">
+                <a href="~/Shop/Create">
+                    <span class="btn-link btn "> <i class=" fa-plus-square fa fa_Blue"></i>
+                    <b> Create New Shop </b></span>
+                </a>
+            </span>
+
+        </p>
+    }
+}
+<table class="table table-striped table-bordered" style="text-align:center">
+    <tr>
+        <th>
+            <span class="label label-success centrLbl">
+                Shop Name
+            </span>
+        </th>
+        <th>
+            <span class="label label-primary centrLbl ">
+                Viewer
+            </span>
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                <div>
+                    
+                    @{ if (Session["swi"] != null && !isadmin)
+                     {
+
+                        <span>
+                            <i class="fa fa-location-arrow"></i>
+                            @Html.ActionLink(item.About, "shop_it", new { id = item.S_Id })
+                        </span>
+                     }
+                     else
+                     {
+                        @Html.Label(item.About, new { @Class = "alert-warning" })
+                     }
+                    }
+
+                </div>
+            </td>
+            <td>
+                <div>
+                    <i class="fa  fa-shopping-cart  fa_Red"></i>
+                    <span>
+                        @Html.ActionLink("Browse Products Owned", "guest_show", new { id = item.S_Id })
+                    </span>
+                </div>
+            </td>
+
+        </tr>
+
+    }
+
+
+</table>
+
+
+
+
+
+
+
+
+
+

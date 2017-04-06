@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Recommended_System.Models.Itemadder>
+
+<div style="width:100%;">
+    <ul class="list-unstyled list-inline text-center" >
+        <li class="list-unstyled mylstNewProd " style="margin-right:15%;">
+            <ul class="list-unstyled" style="width: 130%;">
+                @foreach (var item in ViewBag.Newest_Product_Got)
+                {
+                    <li class="panel-body">
+                        <div class="panel panel-default box_bghome box_hom_shw_prdct">
+                            <div class="" style="height:35px;">
+                                <div>
+                                    <h3> <span class="left "><span class="label label-success box_home_title ">  @item.cat_name </span> </span> </h3>
+                                    <span class="right"> <span class="label-warning label home_topices">  New </span></span>
+                                </div>
+                            </div>
+                            <div>
+                                <ul class="list-unstyled boxInnrHomPanel ">
+                                    <li>
+                                        <div>
+                                            @{ var indx_dat = 0; /// url for no img
+                                             var img_dat_src = "";
+                                             foreach (var i in @item.p)
+                                             {
+                                                 if (i.P_Name == "Image")
+                                                 {
+                                                     indx_dat = item.p.IndexOf(i);
+                                                     List<string> ls = item.pv;
+                                                     string ss = ls.ElementAt<string>(indx_dat);
+                                                     img_dat_src = ss;
+                                                 }
+                                             }
+                                            <div>
+                                                <div class="img_and_title_hom_shw_prdct">
+                                                    <a href="~/Item/Details/@item.item_id">
+                                                        <div class="titl_hom_shw_prdct"> <h3><span class="label alert-success h2 btn-link">@item.item_name </span></h3></div>
+                                                        <img src="@img_dat_src" class="img-thumbnail img_hom_shw_prdct" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            }
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <span class="left">By <a href="/Shop/Details/@item.shop_id"> @item.shop_name </a></span>
+                                            <span class="right">
+                                                @{ var indx_dat_tim = 0; /// url for no img
+                                                 var img_dat_time = "";
+                                                 foreach (var i in @item.p)
+                                                 {
+                                                     if (i.P_Name == "Date")
+                                                     {
+                                                         indx_dat_tim = item.p.IndexOf(i);
+                                                         List<string> ls = item.pv;
+                                                         string ss = ls.ElementAt<string>(indx_dat_tim);
+                                                         img_dat_time = ss;
+                                                     }
+                                                 }
+                                                }
+                                                <span class="label label-warning">
+                                                    <i class="fa  fa-clock-o  info "></i>
+                                                    <span class="">
+                                                        @{
+                                                            @img_dat_time
+                                                        }
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </li>
+        <li class="list-unstyled mylstRatProd " style=" margin-right:15%;">
+            <ul class="list-unstyled" style="width: 130%;">
+                @foreach (var item in ViewBag.MostRated_Product_Got)
+                {
+                    <li class="panel-body">
+                        <div class="panel panel-default box_bghome box_hom_shw_prdct">
+                            <div class="" style="height:35px;">
+                                <div>
+                                    <h3> <span class="left "><span class="label label-primary box_home_title ">  @item.cat_name </span> </span> </h3>
+                                    <span class="right"> <span class="label-danger label home_topices">  Most Rated </span></span>
+                                </div>
+                            </div>
+                            <div>
+                                <ul class="list-unstyled boxInnrHomPanel ">
+                                    <li>
+                                        <div>
+                                            @{ var indx = 0; /// url for no img
+                                             var img_rat_src = "";
+                                             foreach (var i in @item.p)
+                                             {
+                                                 if (i.P_Name == "Image")
+                                                 {
+                                                     indx = item.p.IndexOf(i);
+                                                     List<string> ls = item.pv;
+                                                     string ss = ls.ElementAt<string>(indx);
+                                                     img_rat_src = ss;
+                                                 }
+                                             }
+                                            <div>
+                                                <div class="img_and_title_hom_shw_prdct">
+                                                    <a href="~/Item/Details/@item.item_id">
+                                                        <div class="titl_hom_shw_prdct"> <h3><span class="label alert-info h2 btn-link">@item.item_name </span></h3></div>
+                                                        <img src="@img_rat_src" class="img-thumbnail img_hom_shw_prdct" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            }
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <span class="left">By <a href="/Shop/Details/@item.shop_id"> @item.shop_name </a></span>
+                                            <span class="right">
+                                                @{
+                                                    <span class="fa_Blue ">
+                                                        <i class="fa  fa-thumbs-o-up  fa_Blue"></i>(@item.up)
+                                                    </span>
+                                                    <span class="fa_Red ">
+                                                        <i class="fa  fa-thumbs-o-down  fa_Red "></i>(@item.down)
+                                                    </span>
+                                                }
+                                            </span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>

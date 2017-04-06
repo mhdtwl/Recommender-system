@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Recommended_System.Models.SubScription_Kind2>
+
+@{
+    ViewBag.Title = "SubScriptions";
+}
+
+<p>
+    <h3>
+        <span class="panel panel-info " style="position:relative">
+            <a href="~/SubScription/Create">
+                <span class="btn-link btn "> <i class=" fa-plus-square fa fa_Blue"></i><b> Create New SubScription </b></span>
+            </a>
+        </span>
+    </h3>
+
+    <table class="table table-striped table-bordered" style="text-align:center">
+        <tr>
+            <th>
+                <span class="label label-success centrLbl ">
+                    @Html.DisplayNameFor(model => model.Type)
+                </span>
+            </th>
+            <th>
+                <span class="label label-warning centrLbl ">
+                    @Html.DisplayNameFor(model => model.Price)
+                </span>
+            </th>
+            <th>
+                <span class="label label-danger centrLbl ">
+                    @Html.DisplayNameFor(model => model.Time_Period)
+                </span>
+            </th>
+            <th>
+                <span class="label label-primary centrLbl ">
+                    Take an Action
+                </span>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time_Period)
+                </td>
+                <td>
+                    <span>
+                        <i class="fa-edit fa fa_Green "></i>&nbsp;
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Sub_Id })
+                    </span>
+                    &nbsp;&nbsp; |&nbsp;&nbsp;
+                    <span>
+                        <i class="fa-trash-o fa fa_Red "></i>&nbsp;
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Sub_Id })
+                    </span>
+                </td>
+            </tr>
+        }
+
+    </table>

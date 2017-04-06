@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Recommended_System.Models.Av_Cust>
+@{
+    ViewBag.Title = "Wait";
+}
+
+<div class="alert alert-info">
+    @if (TempData["pr"] != null)
+    {
+        <h2>
+    Thanks for choosing us
+    Please pay @TempData["pr"] $ in SIIB
+        </h2>
+    }
+
+</div>
+<div class="alert alert-success"  >
+    <h2>We will confirm your request in 24 hours</h2>
+</div>

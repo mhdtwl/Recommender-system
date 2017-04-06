@@ -1,0 +1,78 @@
+﻿@model Recommended_System.Models.Shop
+
+@{
+    ViewBag.Title = "Create new shop ";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="alert panel-heading alert-info">Create  a new  shop </div>
+    <fieldset class="panel-body panel">
+        <label style="color:red">@ViewBag.message</label><br />
+        <ul class="list-unstyled panel panel-body panel-default">
+            <li>
+                <span class="editor-label alert ">
+                    <span class="label label-info">
+                        Shop Name
+                    </span>
+                </span>
+                <span class="editor-label ">
+                    @Html.TextBoxFor(model => model.About , new { @Class = "form-control field"  })
+                    @Html.ValidationMessageFor(model => model.About)
+
+                </span>
+            </li>
+            <li class="clearfix"><br /></li>
+            <li>
+
+                <span class="editor-label alert">
+                    <span class="label label-info">
+                        Shop Phone
+                    </span>
+                </span>
+                <span class="editor-field">
+
+                    @Html.TextBoxFor(model => model.Phone , new { @Class = "form-control field" , @type="number" })
+                    @Html.ValidationMessageFor(model => model.Phone)
+
+                </span>
+            </li>
+            <li class="clearfix"><br /></li>
+            <li>
+                <span class="editor-label alert">
+                    <span class="label label-info">
+                        Delevery
+                    </span>
+                </span>
+                <span class=" alert">
+                    <span class="label label-warning pull-right">
+                        Yes | No
+                    </span>
+                </span>
+                <span class="editor-field">
+                    @Html.TextBoxFor(model => model.Delevery , new { @Class = "form-control field"  })
+                    @Html.ValidationMessageFor(model => model.Delevery)
+                </span>
+            </li>
+            <li class="clearfix"><br /></li>
+            <li>
+                <p>
+                    <br />
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </p>
+            </li>
+        </ul>
+    </fieldset>
+
+}
+
+<div>
+    @Html.ActionLink("Cancel & Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

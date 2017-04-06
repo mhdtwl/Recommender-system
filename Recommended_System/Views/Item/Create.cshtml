@@ -1,0 +1,77 @@
+﻿@model Recommended_System.Models.Itemadder
+
+@{
+    ViewBag.Title = "Create new Item";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="alert panel-heading alert-info">Create new  item </div>
+    <fieldset>
+        @if (@ViewBag.message != "")
+        {
+            <label style="color:red">Invalid entery</label><br />
+        }
+        @if (@ViewBag.msg == "INVALID ENTRY")
+        {
+            <label style="color:red">Invalid entery</label><br />
+        }
+
+        <table class="table-striped table-bordered table">
+            <tr>
+                <td>
+                    <span class="editor-label alert ">
+                        Item Name
+                    </span>
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(model => model.item_name, new { @Class = "form-control field" })
+
+
+                    @Html.TextBoxFor(m => m.shop_id, new { @Value = ViewBag.shop_id, @type = "hidden" })
+                    @Html.ValidationMessageFor(model => model.item_name)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="editor-label alert ">
+                        Category Name
+                    </span>
+                </td>
+                <td>
+                    <div>
+                        <span>
+                            <select id="CategoryID" name="CategoryID" class="form-control">
+                                <option value="0"> All Categories</option>
+                                @foreach (var item in ViewBag.CategoryID as List<Recommended_System.Models.Select_Item>)
+                                {
+                                    <option value="@item.id" selected="@item.selected">@item.value</option>
+                                }
+                            </select>
+                        </span>
+                    </div>
+
+                </td>
+
+        </table>
+        <div>
+            <input type="submit" value="Create" class="btn-primary btn" /> &nbsp;&nbsp;
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+
+    </fieldset>
+
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

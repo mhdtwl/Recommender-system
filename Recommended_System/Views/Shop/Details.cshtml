@@ -1,0 +1,68 @@
+﻿@model Recommended_System.Models.Shop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <span class="alert-info alert">
+        @Model.About  Details
+    </span>
+    <br /><br />
+</div>
+
+<fieldset>
+    <div class="well">
+        <ul class="list-unstyled">
+            <li>
+                <div class="display-label label label-info">
+                    Name
+                </div> &nbsp;
+                <span class="display-label panel panel-info">
+                    @Html.DisplayFor(model => model.About)
+                </span>
+                <br /><br />
+            </li>
+            <li>
+                <div class="display-label label label-info">
+                    @Html.DisplayNameFor(model => model.Location)
+                </div> &nbsp;
+                <span class="display-label panel panel-info">
+                    @Html.DisplayFor(model => model.Location.Split('|')[2])
+                </span>
+                <br/><br />
+</li>
+            <li>
+                <div class="display-label label label-info">
+                    @Html.DisplayNameFor(model => model.Phone)
+                </div> &nbsp;
+                <span class="display-label panel panel-info">
+                    @Html.DisplayFor(model => model.Phone)
+                </span>
+                <br /><br />
+            </li>
+            <li>
+                <div class="display-label label label-info">
+                    @Html.DisplayNameFor(model => model.Delevery)
+                </div> &nbsp;
+                <span class="display-label panel panel-info">
+                    @Html.DisplayFor(model => model.Delevery)
+                </span>
+                
+            </li>
+            
+        </ul>
+    </div>
+</fieldset>
+<br/>
+<div>
+    <p>
+        @if (Session["swi"] != null)
+        {        @Html.ActionLink("Edit", "Edit", new { id = Model.S_Id })  <b> | </b> }
+
+        <span class="well well-sm">
+            @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-link " })
+        </span>
+    </p>
+
+</div>

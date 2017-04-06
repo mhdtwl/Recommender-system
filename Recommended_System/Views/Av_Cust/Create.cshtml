@@ -1,0 +1,125 @@
+﻿@model Recommended_System.Models.Av_Cust
+
+@{
+    ViewBag.Title = "Register Now !!";
+    var ss = ViewBag.sss;
+    var dd = "";
+    if (ViewBag.pass != null)
+    { dd = ViewBag.pass; }
+
+}
+<div class="panel">
+    <span class=" h2 panel-heading  alert-info alert">Register Now</span>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="panel-body panel">
+            <ul class="list-unstyled panel panel-body panel-default">
+                <li>
+                    <span class="editor-label alert ">
+                        @Html.LabelFor(model => model.Cust_Nme, new { @class = "label label-info" })
+                    </span>
+                    <span class="editor-label ">
+                        @Html.TextBoxFor(model => model.Cust_Nme, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Cust_Nme)
+                    </span>
+                </li>
+                <li class="clearfix"><br /></li>
+                <li>
+                    <span class="editor-label alert">
+                        @Html.LabelFor(model => model.Phone, new { @class = "label label-success" })
+                    </span>
+                    <span class="editor-label ">
+                        @Html.TextBoxFor(model => model.Phone, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Phone)
+                    </span>
+                </li>
+                <li class="clearfix"><br /></li>
+                <li>
+                    <span class="editor-label alert ">
+                        @Html.LabelFor(model => model.E_mail, new { @class = "label label-info" })
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.E_mail, new { @Class = "form-control field", @type = "email" })
+                        @Html.ValidationMessageFor(model => model.E_mail)
+                    </span>
+                </li>
+                <li class="clearfix"><br /></li>
+                <li>
+                    <span class="editor-label alert">
+                        @Html.LabelFor(model => model.Account_count, new { @class = "label label-warning" })
+                    </span>
+                    <span class="editor-field">
+                        @Html.TextBoxFor(model => model.Account_count, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Account_count)
+                    </span>
+                </li>
+                <li class="clearfix"><br /></li>
+                <li>
+                    <span class="editor-label alert">
+                        @Html.LabelFor(model => model.Password, new { @class = "label label-danger" })
+                    </span>
+                    <span class="editor-field">
+                        @Html.PasswordFor(model => model.Password, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </span>
+                </li>
+                <li class="clearfix"><br /></li>
+                <li>
+                    <span class="editor-label alert">
+                        @Html.LabelFor(model => model.Passwordco, new { @class = "label label-success" })
+                    </span>
+                    <span class="editor-field">
+                        @Html.PasswordFor(model => model.Passwordco, new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.Passwordco)
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <br />
+                    <div class="editor-label alert">
+                        <h3>@TempData["pass"]</h3>
+                    </div>
+
+                </li>
+                <li>
+                    <div class="well-sm well">
+                        <span>
+                            @*@dd*@
+                            @foreach (var a in ss)
+                            {
+                                <br />
+                                int id = a.Sub_Id;
+                                decimal price = a.Price;
+                                string type = a.Type;
+                                double time = a.Time_Period;
+                                <span class="editor-field">
+                                    @Html.RadioButton("snam", type, true, new { @Class = " field" }) @type with a price= @price $ <b class="label alert-info"> Per Shop </b>
+                                </span>
+
+
+                            }
+                            <span class="label alert-success "> Recommender</span>
+                            <br />
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <p>
+                        <br />
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </p>
+                </li>
+            </ul>
+        </fieldset>
+    }
+</div>
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

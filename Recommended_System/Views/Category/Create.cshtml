@@ -1,0 +1,60 @@
+﻿@model Recommended_System.Models.Itemadder
+
+@{
+    ViewBag.Title = "Create new category";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="alert panel-heading alert-info">Create new  category</div>
+
+    <fieldset>
+        <label style="color:red">@ViewBag.message</label><br />
+        <table class="table table-striped table-bordered">
+            <tr>
+                <td>
+                    <span class="alert alert-warning center-block">
+                        Category Name
+                    </span>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.cat_name, new { @class = "field  form-control" })
+                    @Html.ValidationMessageFor(model => model.cat_name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="alert alert-warning center-block">
+                        Number Of Properites
+                    </span>
+                </td>
+                <td>
+                    <div class="well-sm well ">
+                        <span class="blockquote"><b class="fa_Gray_disable label disabled"> Note </b> </span>
+                        <span class="label alert-danger"> There's 3 properites already exist </span>
+                        &nbsp;&nbsp;
+                        <span class="">
+                            <label class="label label-info">Image</label> &
+                            <label class="label  label-info ">Insertion Date</label> &
+                            <label class="label  label-info ">Model name</label>
+                        </span>
+                    </div>
+                    @Html.TextBoxFor(model => model.counter, new {@type="number" , @class = "field  form-control" })
+                    @Html.ValidationMessageFor(model => model.counter)
+                </td>
+            </tr>
+        </table>
+        <div class="text-center">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Cancel & Back to List", "Index", new { @class = "btn btn-link" })
+        </div>
+    </fieldset>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

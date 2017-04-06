@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Recommended_System.Models.Customers>
+
+@{
+    ViewBag.Title = "Customers List";
+
+}
+
+<div style="overflow-x:auto">
+    <table class=" table-striped table " style="text-align:center;">
+        <tr class="row">
+            <th>
+                <span class="label label-primary ">
+                    @Html.DisplayNameFor(model => model.Cust_Nme)
+                </span>
+            </th>
+            <th>
+                <span class="label label-primary centrLbl">
+                    @Html.DisplayNameFor(model => model.Phone)
+                </span>
+            </th>
+            <th>
+                <span class="label label-primary centrLbl">
+                    @Html.DisplayNameFor(model => model.E_mail)
+                </span>
+            </th>
+            <th>
+                <span class="label label-primary centrLbl">
+                    @Html.DisplayNameFor(model => model.Account_count)
+                </span>
+            </th>
+            <th>
+                <span class="label label-primary centrLbl">
+                    @Html.DisplayNameFor(model => model.Start_Time)
+                </span>
+            </th>
+
+            <th>
+                <span class="label label-primary centrLbl">
+                    @Html.DisplayNameFor(model => model.Password)
+                </span>
+            </th>
+            <th colspan="3">
+                <span class="label label-primary centrLbl">
+                    Take an Action
+                </span>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="row">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cust_Nme)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.E_mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    <span>
+                        <i class=" fa-trash-o fa fa_Red "></i>&nbsp;
+                        @Html.ActionLink("Remove", "Remove", new { id = item.Cust_Id })
+                    </span>
+                </td>
+                <td>
+                    @*<td align="center">*@
+
+                    ||
+                </td>
+                <td align="center">
+                    <span>
+                        <i class="  fa-magic fa " style="color:black;"></i>
+                        <i class="  fa-spinner fa_Yellow fa " style="font-size:smaller"></i>
+
+                        &nbsp;
+                        @if (item.Admin == 0)
+                        {
+
+
+                            @Html.ActionLink("Make Admin", "AdminMaker", new { id = item.Cust_Id })
+                        }
+
+                        @if (item.Admin == 1)
+                        {
+
+                            @Html.ActionLink("Make Customer", "AdminBreaker", new { id = item.Cust_Id })}
+
+
+                    </span>
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

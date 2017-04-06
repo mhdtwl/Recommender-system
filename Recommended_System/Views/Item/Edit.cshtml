@@ -1,0 +1,59 @@
+﻿@model Recommended_System.Models.Itemadder
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <legend class="alert-info alert">Edit Product <span class="label label-success"> @Html.DisplayFor(model => model.item_name, new { @Value = Model.item_name }) </span></legend>
+    <fieldset style="text-align:center">
+        <label style="color:red">@ViewBag.message</label><br />
+        @Html.HiddenFor(model => model.item_id, new { @Value = Model.item_id.ToString(), @type = "hidden" })
+        <table class="table-striped table-bordered table" style="text-align:center">
+            <tr>
+                <td>
+                    <span class="label alert-danger ">
+                        Rename Product
+                    </span>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.item_name, new { @Value = Model.item_name, @class = "field form-control" })
+                    @Html.ValidationMessageFor(model => model.item_name)
+                </td>
+            </tr>
+            @for (int i = 0; i < Model.p.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <span class="label alert-warning ">
+                            @Model.p[i].P_Name
+                        </span>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.pv[i], new { @Value = Model.pv[i], @class = "field form-control" })
+                        @Html.ValidationMessageFor(model => model.pv[i])
+
+                        @Html.TextBoxFor(m => m.ind[i], new { @Value = Model.p[i].P_Id.ToString(), @type = "hidden" })
+                        @Html.ValidationMessageFor(model => model.ind[i])
+                    </td>
+                </tr>
+            }
+
+            @Html.TextBoxFor(m => m.cat_id, new { @Value = Model.cat_id.ToString(), @type = "hidden" })
+        </table>
+        <div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </fieldset>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

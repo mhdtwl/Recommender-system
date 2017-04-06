@@ -1,0 +1,46 @@
+﻿@model Recommended_System.Models.Itemadder
+
+@{
+    ViewBag.Title = "Add properites";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend><div class="alert alert-info"> Add an Items </div></legend>
+
+        <label style="color:red">@ViewBag.message</label><br />
+
+        <table class="table-striped  table">
+
+            @for (int i = 0; i < Model.p.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.p[i].P_Name
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.pv[i] , new { @Class = "form-control field" })
+                        @Html.ValidationMessageFor(model => model.pv[i])
+
+                        @Html.TextBoxFor(m => m.ind[i], new { @Value = Model.p[i].P_Id.ToString(), @type = "hidden" })
+                        @Html.TextBoxFor(m => m.shop_id, new { @Value = @Model.shop_id, @type = "hidden" })
+                    </td>
+                </tr>
+            }
+            
+        </table>
+        <input type="submit" value="add" class="btn btn-primary" />
+    </fieldset>
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

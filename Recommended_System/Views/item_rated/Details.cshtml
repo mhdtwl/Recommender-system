@@ -1,0 +1,29 @@
+﻿@model Recommended_System.Models.Item_rate
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Item_rate</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Up)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Up)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Down)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Down)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

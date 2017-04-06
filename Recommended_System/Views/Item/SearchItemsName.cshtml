@@ -1,0 +1,217 @@
+﻿@model IEnumerable<Recommended_System.Models.Itemadder>
+
+<script>
+    $(function () {
+        $('#keyword').val( GetURLParameter('keyword') );
+    });
+    function GetURLParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++)
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam)
+            {
+                return sParameterName[1];
+            }
+        }
+    }
+</script>
+
+
+
+@{
+    ViewBag.Title = "Search Items Advance";
+}
+<script>
+    $(function () {
+        $(".map_header_handel").draggable();
+    });
+    function Get_Distance(lat2, lon2) {
+        console.log(lat2, lon2);
+    }
+</script>
+<h2><span class="label label-info">  Advance Search </span> </h2>
+
+<p>
+    @*<div style="overflow-x:auto;overflow-y:no-display">*@
+
+    @*</div>*@
+
+    @*-------------------------------*@
+   
+        <div class="well well-sm  txtalgn">
+@using (Html.BeginForm("SearchItemsName", "Item", FormMethod.Get))
+{
+            <ul class=" list-inline " style="width:100%;">
+
+                <li style="width:50%;">
+                    <div class="">
+                        <fieldset>
+                            <div>
+                                <input id="keyword" name="keyword"  class="form-control field" placeholder="Search...">
+                            </div>
+                            <br>
+                            <div>
+                                <input type="submit" class="btn btn-primary center-block btnCmp" style="margin-top: 0% !important;padding:14px !important;" value="search">
+                            </div>
+                        </fieldset>
+
+                    </div>
+
+                </li>
+                <li class=" panel-info" style="width:30%;">
+                    <div class=" page-header ">
+                        <span class="alert alert-info">  Filtering </span>
+                    </div>
+                    <div class="panel-body ">
+                        <div class="">
+                            <div> <h4 class="label  label-danger centrLbl"> Category </h4> </div>
+                            <fieldset>
+                                <select id="Category_name" name="Category_name" class="form-control">
+                                    <option value="0"> All Categories</option>
+                                    @foreach (var item in ViewBag.CategoryName as List<Recommended_System.Models.Select_Item>)
+                            {
+                                <option value="@item.id" selected="@item.selected">@item.value</option>
+                            }
+                                </select>
+                            </fieldset>
+                            <br />
+                            <div> <h4 class="label  label-success centrLbl"> Customer </h4> </div>
+                            <fieldset>
+                                <select id="Customer_name" name="Customer_name" class="form-control">
+                                    <option value="0"> Any Customers</option>
+                                    @foreach (var item in ViewBag.Customer_name as List<Recommended_System.Models.Select_Item>)
+                            {
+                                <option value="@item.id" selected="@item.selected">@item.value</option>
+                            }
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div style="position:relative">
+                            <div>
+                                <div class="alert alert-info txtalgn " style="background-color: rgba(188, 232, 241, 0.2);">
+                                    <div>We  give</div>
+                                    <div>the nearest</div>
+                                    <div>  for you !!</div>
+
+                                    <!-- map_toggle() // shwGestLocat() -->
+                                    <div class=" btn btn-default  shwGstLctn " onclick=" map_toggle()" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-map-marker" style="color:rgba(183, 0, 0, 1);"></span> @*//"fa fa-map-marker"*@
+                                        Map  <span class="caret" style="margin:4px;"></span>
+                                    </div>
+                                    <div>
+                                        &nbsp; <i class="fa fa-smile-o fa_Red"></i> &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="right:50%; top: 25%; position: fixed;cursor:pointer">
+                            <div id="map" class="map_header_handel">
+                                <div class="Guest_Location" id="Guest_Location">
+                                    @Html.Partial("GuestGeoLocations")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+}
+           </div>
+ 
+
+
+
+</p>
+<script>
+
+
+</script>
+<br />
+<p>
+    @if (@Model.ToList().Count >= 1)
+    {
+        <div style="overflow-x:auto">
+            <table class="table-striped  table txtalgn">
+                <tr>
+                    <th class="txtalgn">
+
+                        <span class=" label label-info ">
+                            Product
+                        </span>
+                        @*<span   >
+                                <button type="submit">
+                                    <i class='fa-sort fa btn fa_Blue right' id='Prod_Srt'></i>
+                                </button>
+                            </span>*@
+                    </th>
+                    <th class="txtalgn">
+                        <span class="label label-info  ">
+                            Category
+                        </span>
+                    </th>
+                    <th class="txtalgn">
+                        <span class="label label-info  ">
+                             Cost
+                        </span>
+                    </th>
+                    <th class="txtalgn">
+                        <span class="label label-info ">
+                            Shop Name
+                        </span>
+                    </th>
+                    <th class="txtalgn">
+                        <span class="label label-info  ">
+                            Shop Distance
+                        </span>
+                    </th>
+                    <th class="txtalgn">
+                        <span class="label label-info ">
+                            Shop Location
+                        </span>
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.item_name, "Details", new { id = item.item_id })
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => (item.cat_name))
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => (item.counter)) $.
+                        </td>
+                        <td>
+                            @Html.ActionLink(item.shop.name, "../Shop/guest_show", new { id = item.shop.id })
+                        </td>
+                        <td>
+                            @*@item.LocLati  ,   @item.LocLong*@
+                            <span id="Distace_div">
+                                @item.distace
+                                K.M.
+                            </span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => (item.shop.Locat))
+                        </td>
+                    </tr>
+                }
+            </table>
+            <div id="last"></div>
+        </div>
+    }
+    else { 
+        if(Session["user_search"] != null)
+        {<div class="alert-warning alert"> No Result !!</div>}
+    }
+</p>

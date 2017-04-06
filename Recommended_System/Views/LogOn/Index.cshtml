@@ -1,0 +1,34 @@
+﻿@model Recommended_System.Models.LogOn
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.E_Mail)
+            @{
+    if (ViewBag.loginerror != null && ViewBag.loginerror) { Html.Display("  Email or Password incorrect ."); }
+                
+            }
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.E_Mail)
+            @Html.ValidationMessageFor(model => model.E_Mail)
+        </div><div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        
+    </fieldset>
+    <input type="submit" value="LogOn" />
+}

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Recommended_System.Models.Categories>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<p>
+    <h3>
+        <span class="panel panel-info " style="position:relative">
+            <a href="~/Category/Create">
+                <span class="btn-link btn "> <i class=" fa-plus-square fa fa_Blue"></i><b> Create New Category </b></span>
+            </a>
+        </span>
+    </h3>
+
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table table-striped table-bordered" style="text-align:center">
+    <tr>
+        <th>
+            <span class="label label-success centrLbl ">
+                Category Name
+            </span>
+        </th>
+        <th>
+            <span class="label label-warning centrLbl ">
+                Operation
+            </span>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <span><i class="fa-edit fa fa_Green "></i>&nbsp; @Html.ActionLink("Edit", "Edit", new { id = item.Cat_Id }) </span>
+                &nbsp;&nbsp; |&nbsp;&nbsp;
+                <span><i class=" fa-trash-o fa fa_Red "></i>&nbsp; @Html.ActionLink("Delete", "Delete", new { id = item.Cat_Id }) </span>
+
+            </td>
+        </tr>
+    }
+    @*<tr>
+            <th>
+                @Html.ActionLink("Item Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model  )
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.T_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cat_Id)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.T_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.T_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.T_Id })
+                </td>
+            </tr>
+        }*@
+
+
+</table>
